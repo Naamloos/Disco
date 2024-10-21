@@ -1,34 +1,22 @@
-﻿#app-mount > div.typeWindows_a934d8.withFrame_a934d8.titleBar_a934d8.withBackgroundOverride_a934d8 > div.wordmarkWindows_a934d8.wordmark_a934d8 {
+﻿#app-mount > :nth-child(4) > :first-child {
     color: #fff;
-    background: linear-gradient(90deg, #b00, #bb0, #0b0, #0bb, #00b, #b0b, #b00, #bb0, #0b0, #0bb, #00b, #b0b, #b00);
-    background-size: 200% 4px;
-    animation: rainbow 5s linear infinite;
-    background-repeat: no-repeat;
-    height: 18px;
-    width: 100%;
     & > svg
-    {
-        display: none;
-    }
 
-    &::before {
-        content: "Disco External Mod Loaded";
-        font-size: 11px;
-        font-weight: 700;
-        color: #fff;
-        line-height: 18px;
-    }
+{
+    display: none;
 }
 
-@keyframes rainbow 
-{
-    0% 
-    {
-        background-position: 0% 99%;
-    }
+padding-top: 2px;
+text-align: center;
+width: 100%;
+background-color: #000;
+border-bottom: 1px solid #444;
 
-    100% 
-    {
-        background-position: 100% 99%;
-    }
+&::before {
+    content: "Disco External Mod";
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 18px;
+}
 }

@@ -29,6 +29,7 @@ By using Disco, you acknowledge and agree that I, Naamloos, am not responsible f
 
 ## Limitations
 Due to Discord limiting the domains that images and other resources may be loaded from, you may encounter issues with external styles or resources. At this moment it's not possible for me to circumvent this, which is actually kind of a good thing, technically!
+
 ### Possible workarounds
 *Note: None of these have been tested so far, feel free to notify me whether these work! (via GitHub issues or on Discord)*
 - Install something like OpenASAR which removes these limitations (You'd now be modifying your client's code, which is against the goal of this project!)
