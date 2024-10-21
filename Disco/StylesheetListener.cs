@@ -81,7 +81,11 @@ namespace Disco
             using var file = File.Open(_path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             using var reader = new StreamReader(file);
             var text = reader.ReadToEnd();
-            return text;
+            // load file from resources
+            var str = Assembly.GetExecutingAssembly().GetManifestResourceStream("Disco.Css.baseStyle.css");
+            using var reader2 = new StreamReader(str!);
+            var baseStyle = reader2.ReadToEnd();
+            return baseStyle + "\n\n\n\n" + text;
         }
 
         private const string injectString = "{{INJECT}}";

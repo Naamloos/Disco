@@ -18,7 +18,22 @@ namespace Disco
             var appDirs = Directory.GetDirectories(basePath).Where(x => x.Contains("app-"));
             if(appDirs.Any())
             {
-                var appDir = Path.Combine(appDirs.First(), "Discord.exe");
+                var discordAppDir = "";
+                foreach(var dir in appDirs)
+                {
+                    if(Directory.GetFiles(dir, "Discord.exe").Any())
+                    {
+                        discordAppDir = dir;
+                        break;
+                    }
+                    Console.WriteLine("Found a Discord at " + dir);
+                }
+                if(discordAppDir == "")
+                {
+                    Console.WriteLine("Could not find a Discord executable in any of the Discord app directories 😔🤘");
+                    return;
+                }
+                var appDir = Path.Combine(discordAppDir, "Discord.exe");
                 Console.WriteLine("Found a Discord stable at " + appDir);
                 var debugger = new ElectronDebugger(30069, appDir);
 
