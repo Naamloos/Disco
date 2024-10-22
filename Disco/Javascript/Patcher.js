@@ -24,7 +24,7 @@
     element.setAttribute("class", "DISCO_STYLING");
 
     // inject style
-    element.innerHTML = `{{INJECT}}`;
+    element.innerHTML = `{{{0}}}`;
 
     // inject element into HTML
     document.body.append(element);

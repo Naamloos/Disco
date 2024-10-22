@@ -12,6 +12,7 @@
     <None Remove="Css\baseStyle.css" />
     <None Remove="IntroText.txt" />
     <None Remove="Javascript\Experiments.js" />
+    <None Remove="Javascript\SendNotification.js" />
     <None Remove="Logger.js" />
     <None Remove="Patcher.js" />
   </ItemGroup>
@@ -29,6 +30,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Javascript\Logger.js" />
     <EmbeddedResource Include="Javascript\Patcher.js" />
+    <EmbeddedResource Include="Javascript\SendNotification.js" />
   </ItemGroup>
 
   <ItemGroup>

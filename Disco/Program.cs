@@ -41,7 +41,7 @@ namespace Disco
 
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "style.css");
 
-                var styler = new StylesheetListener(debugger, path);
+                var styler = new ClientModhandler(debugger, path);
                 await styler.StartAsync();
             }
 

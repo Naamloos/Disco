@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Disco
 {
-    internal class StylesheetListener
+    internal class ClientModhandler
     {
         private ElectronDebugger _debugger;
         private FileSystemWatcher _watcher;
         private string _path;
 
-        public StylesheetListener(ElectronDebugger debugger, string path)
+        public ClientModhandler(ElectronDebugger debugger, string path)
         {
             _path = path;
             remakeFile();
@@ -24,7 +24,7 @@ namespace Disco
 
         public async Task StartAsync()
         {
-            logConsole("Helloooo Discord! 😈");
+            LogToConsole("Helloooo Discord! 😈");
             injectStyle();
             injectExperiments();
 
@@ -33,6 +33,8 @@ namespace Disco
 
             _watcher.EnableRaisingEvents = true;
             _watcher.NotifyFilter = NotifyFilters.LastWrite;
+
+            SendNotification("Disco External Mod", "Disco (external client mod) now running!");
 
             await Task.Delay(-1);
         }
@@ -53,27 +55,38 @@ namespace Disco
         private void injectStyle()
         {
             _debugger.SendJavascript(loadJs("Disco.Javascript.Patcher.js", loadStyle()));
-            logConsole("Injected DISCO update into Discord! <3");
+            LogToConsole("Injected DISCO update into Discord! <3");
         }
 
         private void injectExperiments()
         {
             _debugger.SendJavascript(loadJs("Disco.Javascript.Experiments.js"));
-            logConsole("Enabled experiments!");
+            LogToConsole("Enabled experiments!");
         }
 
-        private void logConsole(string message)
+        public void LogToConsole(string message)
         {
             _debugger.SendJavascript(loadJs("Disco.Javascript.Logger.js", message));
             Console.WriteLine(message);
         }
 
-        private string loadJs(string resource, string? substitute = null)
+        public void SendNotification(string title, string message)
+        {
+            _debugger.SendJavascript(loadJs("Disco.Javascript.SendNotification.js", title, message));
+        }
+
+        private string loadJs(string resource, params string[] substitute)
         {
             var str = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
             using var reader = new StreamReader(str!);
             var js = reader.ReadToEnd();
-            return substitute != null? js.Replace(injectString, substitute) : js;
+
+            for(int i = 0; i < substitute.Length; i++)
+            {
+                js = js.Replace("{{{" + i + "}}}", substitute[i]);
+            }
+
+            return js;
         }
 
         private string loadStyle()
@@ -88,6 +101,6 @@ namespace Disco
             return baseStyle + "\n\n\n\n" + text;
         }
 
-        private const string injectString = "{{INJECT}}";
+        private const string injectKeyword = "INJECT";
     }
 }

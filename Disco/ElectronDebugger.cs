@@ -109,5 +109,10 @@ namespace Disco
             var stringPayload = JsonSerializer.Serialize(payload);
             _websocket?.Send(stringPayload);
         }
+
+        public void PushNotification(string title, string body)
+        {
+
+        }
     }
 }

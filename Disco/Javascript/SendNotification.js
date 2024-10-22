@@ -1,0 +1,1 @@
+﻿const notification = new Notification("{{{0}}}", { body: "{{{1}}}" });
