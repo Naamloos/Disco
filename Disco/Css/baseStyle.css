@@ -1,18 +1,13 @@
-﻿#app-mount > :nth-child(4) > :first-child {
+﻿.__logo {
     color: #fff;
-    & > svg
+    &::after
 
 {
-    display: none;
-}
-
-padding-top: 2px;
-
-&::before {
-    content: "Disco External Mod";
-    font-size: 13px;
-    font-weight: 700;
+    content: " + Disco <3";
+    font-size: 9px;
     color: #fff;
-    line-height: 18px;
+    position: relative;
+    top: -5px;
+    left: -2px;
 }
 }

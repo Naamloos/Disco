@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Disco.Entities
 {
-    internal class DebuggerPayload
+    public class DebuggerPayload
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; } = 69; // nice
+        public int Id { get; set; } = Random.Shared.Next(0, int.MaxValue); // nice
 
         [JsonPropertyName("method")]
         public string Method { get; set; } = "Runtime.evaluate";
@@ -20,7 +20,7 @@ namespace Disco.Entities
         public object? Params { get; set; } = null;
     }
 
-    internal class DebuggerParams
+    public class DebuggerParams
     {
         [JsonPropertyName("expression")]
         public string Expression { get; set; } = "";

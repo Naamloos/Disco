@@ -26,6 +26,7 @@ By using Disco, you acknowledge and agree that I, Naamloos, am not responsible f
 - [ ] Allow disabling the experiments enabler among other things
 - [ ] Custom JS scripting API
 - [ ] C# plugin API
+- [ ] Custom CSS selectors
 
 ## Limitations
 Due to Discord limiting the domains that images and other resources may be loaded from, you may encounter issues with external styles or resources. At this moment it's not possible for me to circumvent this, which is actually kind of a good thing, technically!
@@ -37,6 +38,12 @@ Due to Discord limiting the domains that images and other resources may be loade
 
 ## How to use
 Using Disco is quite simple. All you need to do is Run Disco, which restarts your Discord client with electron's remote debugger enabled. Disco will use the debugger to run two scripts: `Patcher.js`, which injects Disco's styling, and `Experiments.js`, which enabled Discord's experiments tab.
+
+Before doing so, make sure the following field is present in `%appdata%/discord/settings.json`:
+```json
+"DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true,
+```
+As of right now, this is not enabled automatically, but it is planned.
 
 To modify CSS, edit the `style.css` file in Disco's directory. Do take note that Disco does not include any of the fancy stuff other client mods have, such as sass/scss support or importing styles from external resources. Luckily, Disco does have a hot-reload feature that will hot-reload your styling as you modify it.
 

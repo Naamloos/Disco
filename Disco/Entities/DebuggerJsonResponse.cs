@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Disco.Entities
 {
-    internal class DebuggerJsonResponse
+    public class DebuggerJsonResponse
     {
         [JsonPropertyName("url")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
