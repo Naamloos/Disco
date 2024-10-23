@@ -147,7 +147,7 @@ namespace Disco.Services
         private void receiveMessage(ResponseMessage message)
         {
             var payload = JsonSerializer.Deserialize<DebuggerIncomingPayload>(message.Text);
-            OnMessageReceived?.Invoke(payload);
+             OnMessageReceived?.Invoke(payload);
         }
     }
 }

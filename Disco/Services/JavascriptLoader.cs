@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Disco.Services
 {
@@ -64,6 +65,21 @@ namespace Disco.Services
         public void InjectExtendedSelectors()
         {
             InjectScript("ExtendedSelectors");
+        }
+
+        public void InjectDiscoPatcher()
+        {
+            InjectScript("DiscoPatcher", "1.0.0");
+        }
+
+        public void SendPatcherResponse(string id, string jsonString)
+        {
+            InjectScript("PatcherResponse", id, HttpUtility.JavaScriptStringEncode(jsonString));
+        }
+
+        public void InjectDiscoDebug()
+        {
+            InjectScript("DiscoDebug");
         }
 
         public void InjectScript(string scriptName, params string[] substitutes)

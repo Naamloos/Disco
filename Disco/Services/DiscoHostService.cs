@@ -15,13 +15,16 @@ namespace Disco.Services
         private StyleListener _styleListener;
         private JavascriptLoader _javascriptLoader;
         private ILogger<DiscoHostService> _logger;
+        private DiscoNativeProxy _discoNativeProxy;
 
-        public DiscoHostService(ILogger<DiscoHostService> logger, ElectronDebugger electronDebugger, StyleListener styleListener, JavascriptLoader javascriptLoader)
+        public DiscoHostService(ILogger<DiscoHostService> logger, ElectronDebugger electronDebugger, 
+            StyleListener styleListener, JavascriptLoader javascriptLoader, DiscoNativeProxy discoNativeProxy)
         {
             _electronDebugger = electronDebugger;
             _styleListener = styleListener;
             _javascriptLoader = javascriptLoader;
             _logger = logger;
+            _discoNativeProxy = discoNativeProxy;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -34,6 +37,7 @@ namespace Disco.Services
             await _electronDebugger.LaunchAsync();
 
             _javascriptLoader.Preload();
+            _javascriptLoader.InjectDiscoPatcher();
             _javascriptLoader.InjectExperiments();
             _javascriptLoader.InjectExtendedSelectors();
 
@@ -41,6 +45,9 @@ namespace Disco.Services
 
             _logger.LogInformation("Disco is now running! ✨");
             _javascriptLoader.CreateNotification("Disco", "Disco is now running! ✨");
+
+            _javascriptLoader.SendPatcherResponse("DISCO_DEBUG", "{\"value\": 0}");
+            
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)

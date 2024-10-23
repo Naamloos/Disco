@@ -16,6 +16,7 @@ namespace Disco
                     services.AddSingleton<ElectronDebugger>();
                     services.AddSingleton<JavascriptLoader>();
                     services.AddSingleton<StyleListener>();
+                    services.AddSingleton<DiscoNativeProxy>();
                     services.AddHostedService<DiscoHostService>();
                     services.AddLogging();
                 })
